@@ -1,21 +1,19 @@
-from llama_index.core import StorageContext, load_index_from_storage
-from llama_index.core import ServiceContext
-from llama_index.llms import Ollama
+from openai import OpenAI
+# from config import key_DeepSeek_V3
+from config import key_DeepSeek_R1
 
+client = OpenAI(
+  base_url="https://openrouter.ai/api/v1",
+  api_key=key_DeepSeek_R1,
+)
 
-# Создаем объект LLM для взаимодействия с DeepSeek
-llm = Ollama(model="deepseek-r1:1.5b")
-
-# Создаем контекст сервиса
-service_context = ServiceContext.from_defaults(llm=llm)
-
-# Путь к папке со структурой индекса
-storage_context = StorageContext.from_defaults(persist_dir="./storage")
-
-# Загружаем индекс из хранилища
-index = load_index_from_storage(storage_context)
-
-# Выполняем запрос
-query = "Объясни, как работает декоратор в Python."
-response = index.query(query)
-print(response)
+completion = client.chat.completions.create(
+  model="deepseek/deepseek-chat",
+  messages=[
+    {
+      "role": "user",
+      "content": "Що ти можешь розповісти про себе коротко (напиши свою модель)?"
+    }
+  ]
+)
+print(completion.choices[0].message.content)
