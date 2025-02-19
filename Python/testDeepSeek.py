@@ -1,19 +1,20 @@
-from openai import OpenAI
-# from config import key_DeepSeek_V3
-from config import key_DeepSeek_R1
+from ollama import chat
 
-client = OpenAI(
-  base_url="https://openrouter.ai/api/v1",
-  api_key=key_DeepSeek_R1,
+response = chat(
+    model='deepseek-coder:6.7b',
+    messages=[{
+        'role': 'user',
+        'content': 'Кто ты такой?'
+    }],
+    stream=True  # Включаем потоковый режим
 )
 
-completion = client.chat.completions.create(
-  model="deepseek/deepseek-chat",
-  messages=[
-    {
-      "role": "user",
-      "content": "Що ти можешь розповісти про себе коротко (напиши свою модель)?"
-    }
-  ]
-)
-print(completion.choices[0].message.content)
+full_response = []
+for chunk in response:
+    part = chunk.get('message', {}).get('content', '')
+    if part:
+        print(part, end='', flush=True)  # Выводим по частям без переноса строки
+        full_response.append(part)
+
+# Для сохранения полного ответа в переменной
+final_answer = ''.join(full_response)
