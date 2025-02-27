@@ -107,13 +107,14 @@
       function handleEmailSubmit(event) {
         event.preventDefault();
         const email = document.getElementById('email').value;
-        if(email) {
-          const clientId = '449301712934-otg87n2g8ue800t9lmt2f095d3okfqlr.apps.googleusercontent.com';
-          const redirectUri = encodeURIComponent('http://localhost:3000/auth/google/callback');
-          const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=profile%20email&access_type=offline&login_hint=${encodeURIComponent(email)}`;
-          window.location.href = authUrl;
+        if (email) {
+            const clientId = '449301712934-otg87n2g8ue800t9lmt2f095d3okfqlr.apps.googleusercontent.com';
+            const redirectUri = encodeURIComponent('http://localhost:3000/auth/google/callback');
+            const authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${redirectUri}&response_type=code&scope=profile%20email&access_type=offline`;
+            window.location.href = authUrl;
         }
-      }
+    }
+    
     </script>
   </body>
 </html>
