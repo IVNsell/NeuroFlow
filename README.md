@@ -12,7 +12,7 @@
 |------|------|
 | **[Ivan Gaidarov](https://github.com/IVNsell)** | Full-Stack Developer |
 | **[Kirill Lypenko](https://github.com/robotvenomchik)** | Team member |
-| **Ksenia Gubenko** | Team member |
+| **[Ksenia Gubenko](https://github.com/ssddqqww)** | Team member |
 
 *We participated as a **school student team** at INFOMATRIX World.*
 
